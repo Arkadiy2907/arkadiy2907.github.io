@@ -187,15 +187,16 @@ function getCurrentCoords(pos) {
   sessionStorage.setItem('coordsLon', JSON.stringify(longitude));
   console.log(latitude);
   console.log(longitude);
-  const httpSityName = new XMLHttpRequest();
-  httpSityName.open('get', `http://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=5&appid=ecbaa67ba7bece31be9e96bd8181180a`)
+  const httpSityName = new XMLHttpRequest();  
+  httpSityName.open('get', `https://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=5&appid=ecbaa67ba7bece31be9e96bd8181180a`); //now max limit  = 1
   httpSityName.send();
   httpSityName.addEventListener('load', function() {
     if (httpSityName.status == 200) {
       const data = JSON.parse(httpSityName.response);
+      console.log(data);
       let sityName = data[0].name;
       sessionStorage.setItem('choseSityName', JSON.stringify(sityName));
-      renderGetNameSity(data[0].name);
+      renderGetNameSity(data[0].name/* , data[1].name, , data[2].name, data[3].name, data[4].name, data[5].name */);//was max limit=5 but now max limit  = 1
     } else {
       document.querySelector('.currentWeather__header').innerHTML = `sorry city name is not available`
     };
