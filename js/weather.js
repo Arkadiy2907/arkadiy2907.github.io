@@ -205,7 +205,7 @@ function getCurrentCoords(pos) {
 
 function choseSity(sityNameNow) {
   const httpChoseSity = new XMLHttpRequest();
-  httpChoseSity.open('get', `http://api.openweathermap.org/data/2.5/weather?q=${sityNameNow}&appid=ecbaa67ba7bece31be9e96bd8181180a`)
+  httpChoseSity.open('get', `https://api.openweathermap.org/data/2.5/weather?q=${sityNameNow}&appid=ecbaa67ba7bece31be9e96bd8181180a`)
   httpChoseSity.send();
   httpChoseSity.addEventListener('load', function() {
     if (httpChoseSity.status == 200) {
@@ -229,7 +229,7 @@ function httpForecastWeather() {
   let lat = JSON.parse(sessionStorage.getItem('coordsLat'));
   let lon = JSON.parse(sessionStorage.getItem('coordsLon'));
 
-  httpforecastWeather.open('get', `http://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,alerts&units=metric&appid=ecbaa67ba7bece31be9e96bd8181180a`)
+  httpforecastWeather.open('get', `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,alerts&units=metric&appid=ecbaa67ba7bece31be9e96bd8181180a`)
   httpforecastWeather.send();
   httpforecastWeather.addEventListener('load', function() {
     if (httpforecastWeather.status == 200) {
