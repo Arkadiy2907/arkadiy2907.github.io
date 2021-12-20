@@ -69,7 +69,7 @@ function nameSity(lat, lon) {
 };
 
 function addDays(numerDays) {
-  Date.prototype.addDays = function(days) {
+  Date.prototype.addDays = function (days) {
     const date = new Date(this.valueOf());
     date.setDate(date.getDate() + days);
     return date;
@@ -156,7 +156,7 @@ function renderSityName(x) {
 
 function forecastWeather(y) {
   let forecastDaily = y.daily;
-  let forecastHourly = y.hourly.filter(function(_, i) {
+  let forecastHourly = y.hourly.filter(function (_, i) {
     return i % 3 === 0;
   });
   renderForecastWeatherDaily(forecastDaily, forecastHourly);
@@ -187,16 +187,26 @@ function getCurrentCoords(pos) {
   sessionStorage.setItem('coordsLon', JSON.stringify(longitude));
   console.log(latitude);
   console.log(longitude);
-  const httpSityName = new XMLHttpRequest();  
+  const httpSityName = new XMLHttpRequest();
   httpSityName.open('get', `https://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=5&appid=ecbaa67ba7bece31be9e96bd8181180a`); //now max limit  = 1
   httpSityName.send();
-  httpSityName.addEventListener('load', function() {
+  httpSityName.addEventListener('load', function () {
     if (httpSityName.status == 200) {
       const data = JSON.parse(httpSityName.response);
-      console.log(data);
-      let sityName = data[0].name;
+
+      //was max limit=5 but now max limit  = 1
+      let [placeOne, placeTwo, placeThree, placeFour, placeFive] = data;
+      console.log(placeOne, placeTwo, placeThree, placeFour, placeFive);
+      console.log(placeOne.name);
+      placeOne = placeOne ? placeOne.name : "Saint Petersburg";
+      placeTwo = placeTwo ? placeTwo.name : "Saint Petersburg";
+      placeThree = placeThree ? placeThree.name : "Slantsy";
+      placeFour = placeFour ? placeFour.name : "Murom";
+      placeFive = placeFive ? placeFive.name : "Udomlya";
+
+      let sityName = placeOne;
       sessionStorage.setItem('choseSityName', JSON.stringify(sityName));
-      renderGetNameSity(data[0].name/* , data[1].name, , data[2].name, data[3].name, data[4].name, data[5].name */);//was max limit=5 but now max limit  = 1
+      renderGetNameSity(placeOne, placeTwo, placeThree, placeFour, placeFive);
     } else {
       document.querySelector('.currentWeather__header').innerHTML = `sorry city name is not available`
     };
@@ -207,7 +217,7 @@ function choseSity(sityNameNow) {
   const httpChoseSity = new XMLHttpRequest();
   httpChoseSity.open('get', `https://api.openweathermap.org/data/2.5/weather?q=${sityNameNow}&appid=ecbaa67ba7bece31be9e96bd8181180a`)
   httpChoseSity.send();
-  httpChoseSity.addEventListener('load', function() {
+  httpChoseSity.addEventListener('load', function () {
     if (httpChoseSity.status == 200) {
       let data = JSON.parse(httpChoseSity.response);
       let latitude = data.coord.lat,
@@ -231,7 +241,7 @@ function httpForecastWeather() {
 
   httpforecastWeather.open('get', `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,alerts&units=metric&appid=ecbaa67ba7bece31be9e96bd8181180a`)
   httpforecastWeather.send();
-  httpforecastWeather.addEventListener('load', function() {
+  httpforecastWeather.addEventListener('load', function () {
     if (httpforecastWeather.status == 200) {
       let data = JSON.parse(httpforecastWeather.response);
       let nowSityName = JSON.parse(sessionStorage.getItem('choseSityName'));
