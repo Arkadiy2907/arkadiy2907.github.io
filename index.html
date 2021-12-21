@@ -14,7 +14,7 @@
 </head>
 
 <body>
-  <div class="wrap" onclick="saveLastPageIndex()">
+  <div class="wrap" onclick="saveLastPageIndex()" id="wrap">
     <header class="wrap__header">
       <div class="wrap__header__face">
         <div class="wrap__header_logo">
@@ -27,12 +27,15 @@
       </div>
     </header>
     <nav class="wrap__nav">
-      <ul class="navbar">
-        <li><a href="./about.html">we are on the map</a></li>
-        <li><a href="./about.html">our adress</a></li>
-        <li><a href="./about.html">about shop</a></li>
-        <li><a href="./about.html">tel</a></li>
-        <li><a href="./about.html">massage</a></li>
+      <ul class="navbar">      
+        <li><span>about shop</span>
+          <ul>
+            <li><a href="./about.html">we are on the map</a></li>
+            <li><a href="./about.html">our adress</a></li>
+            <li><a href="./about.html">tel</a></li>
+            <li><a href="./about.html">massage</a></li>
+          </ul>
+        </li>
         <li><a href="#popup" id="buttonHi">for register</a></li>
         <li><a href="./order.html">order registration</a></li>
         <li><a href="./gallery.html">gallery bike</a></li>
@@ -199,6 +202,7 @@
   </div>
   <script defer src="./js/facebook.js"></script>
   <script defer src="./js/main.js"></script>
+  <script defer src="./js/menuNav.js"></script>
 </body>
 
 </html>
