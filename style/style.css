@@ -306,6 +306,7 @@
     
     ul.navbar__active {
       display: block;
+      background-color: var( --darkGreen);
     }
     
     .wrap__aside {

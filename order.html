@@ -11,7 +11,7 @@
 </head>
 
 <body>
-  <div class="wrap">
+  <div class="wrap" id="wrap">
     <header class="wrap__header">
       <div class="wrap__header__face">
         <div class="wrap__header_logo">
@@ -27,11 +27,14 @@
       <ul class="navbar">
         <li><a href="./">shop</a></li>
         <li><a href="./">description bike</a></li>
-        <li><a href="./about.html">we are on the map</a></li>
-        <li><a href="./about.html">our adress</a></li>
-        <li><a href="./about.html">about shop</a></li>
-        <li><a href="./about.html">tel</a></li>
-        <li><a href="./about.html">massage</a></li>
+        <li><span>about shop</span>
+          <ul>
+            <li><a href="./about.html">we are on the map</a></li>
+            <li><a href="./about.html">our adress</a></li>
+            <li><a href="./about.html">tel</a></li>
+            <li><a href="./about.html">massage</a></li>
+          </ul>
+        </li>
         <li><a href="./gallery.html">gallery bike</a></li>
       </ul>
     </nav>answerInGetAccount
@@ -242,6 +245,7 @@
     </footer>
   </div>
   <script defer src="./js/order.js"></script>
+  <script defer src="./js/menuNav.js"></script>
 </body>
 
 </html>
